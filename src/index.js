@@ -10,7 +10,11 @@ searchInput.addEventListener('input', debounce(countrySearch, DEBOUNCE_DELAY));
 
 function countrySearch(e) {
     let searchInputValue = e.target.value.trim();
-    searchCountryOnPromise(searchInputValue)
+    if (searchInputValue === '') {
+        clearInput();
+    } else {
+        searchCountryOnPromise(searchInputValue)
+    }
 }
 
 function searchCountryOnPromise(value) {
@@ -42,3 +46,7 @@ function renderOneCountryCard(arrObj) {
     countryInfo.innerHTML = markupOne;
 }
 
+function clearInput() {
+    countryList.innerHTML = '';
+    countryInfo.innerHTML = '';
+}
