@@ -7,16 +7,23 @@ const countryList = document.querySelector(".country-list");
 console.log("🚀 ~ countryList", countryList)
 
 
-fetchCountries("China").then(f => f.json()).then(console.log);
+
 
 searchInput.addEventListener('input', debounce(countrySearch, DEBOUNCE_DELAY));
 
 function countrySearch(e) {
     let searchInputValue = e.target.value.trim();
     console.log("🚀 ~ searchInputValue", searchInputValue)
-
+    searchCountryOnPromise(searchInputValue)
 }
 
-function renderCountryList(value) {
+function searchCountryOnPromise(value) {
+    fetchCountries(value)
+        .then(f => f.json())
+        .then(console.log).
+        catch(e => console.log('пиши нормально'));
+}
+
+// function renderCountryList(value) {
     
-}
+// }
