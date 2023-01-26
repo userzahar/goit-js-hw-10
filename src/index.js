@@ -39,13 +39,14 @@ function searchCountryOnPromise(value) {
 
 function renderCountryList(arrObj) {
     countryInfo.innerHTML = '';
-    const markup = arrObj.map((el) => `<li class='country-li'><img src =${el.flags.svg} width='30' heigth='20'></img>${el.name.common}</li>`).join("");
+    const markup = arrObj.map((el) =>
+        `<li class='country-li'><img src =${el.flags.svg} alt="flag ${el.name.common}" width='30' heigth='20'></img>${el.name.common}</li>`).join("");
     countryList.innerHTML = markup;
 }
 
 function renderOneCountryCard(arrObj) {
     countryList.innerHTML = '';
-    const markupOne = arrObj.map((el) => `<h2><img src =${el.flags.svg} width='30' heigth='20'></img> ${el.name.common}</h2><ul class="country-list"><li class="country-li">Capital: ${el.capital}</li><li class="country-li">Population: ${el.population}</li><li class="country-li">Languages: ${Object.values(el.languages)}</li></ul>`).join("");
+    const markupOne = arrObj.map((el) => `<h2><img src =${el.flags.svg} alt="flag ${el.name.common}" width='30' heigth='20'></img> ${el.name.common}</h2><ul class="country-list"><li class="country-li">Capital: ${el.capital}</li><li class="country-li">Population: ${el.population}</li><li class="country-li">Languages: ${Object.values(el.languages)}</li></ul>`).join("");
     countryInfo.innerHTML = markupOne;
 }
 
