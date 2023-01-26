@@ -15,14 +15,15 @@ function countrySearch(e) {
 
 function searchCountryOnPromise(value) {
     fetchCountries(value)
-        .then(f => f.json())
+        .then(f => {
+            if (!f.ok) { return; } else{return f.json()} 
+        })
         .then(f => {
             if (f.length > 10) {
                 console.log("Too many matches found. Please enter a more specific name.")      
             } else if (f.length === 1) {
                 renderOneCountryCard(f)
             } else {
-                console.log(f)
                 renderCountryList(f);  
             }
         })
@@ -39,6 +40,5 @@ function renderOneCountryCard(arrObj) {
     countryList.innerHTML = '';
     const markupOne = arrObj.map((el) => `<h2><img src =${el.flags.svg} width='30' heigth='20'></img> ${el.name.common}</h2><ul><li>Capital: ${el.capital}</li><li>Population: ${el.population}</li><li>Languages: ${Object.values(el.languages)}</li></ul>`).join("");
     countryInfo.innerHTML = markupOne;
-    arrObj.map((el) => console.log(Object.values(el.languages)))
 }
 
