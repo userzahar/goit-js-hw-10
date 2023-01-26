@@ -19,6 +19,7 @@ function searchCountryOnPromise(value) {
             if (f.length > 10) {
                 console.log("Too many matches found. Please enter a more specific name.")      
             } else {
+                console.log(f)
                 renderCountryList(f);  
             }
         })
@@ -26,6 +27,7 @@ function searchCountryOnPromise(value) {
 }
 
 function renderCountryList(arrObj) {
-    const markup = arrObj.map((el) => `<li>${el.capital}</li>`).join("");
+    const markup = arrObj.map((el) => `<li><img src =${el.flags.svg} width='30' heigth='20'></img>${el.name.common}</li>`).join("");
     countryList.innerHTML = markup;
+    arrObj.map((el) => console.log(el.flags.svg))
 }
