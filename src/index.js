@@ -30,22 +30,15 @@ function searchCountryOnPromise(value) {
 }
 
 function renderCountryList(arrObj) {
+    countryInfo.innerHTML = '';
     const markup = arrObj.map((el) => `<li class='country-list'><img src =${el.flags.svg} width='30' heigth='20'></img>${el.name.common}</li>`).join("");
     countryList.innerHTML = markup;
 }
 
 function renderOneCountryCard(arrObj) {
     countryList.innerHTML = '';
-    // const languages = arrObj.map((el) => {
-    //    el.languages.map(el=>console.log(el))
-    // })
-    const markupOne = arrObj.map((el) => `<h2><img src =${el.flags.svg} width='30' heigth='20'></img>${el.name.common}</h2><ul><li>Capital: ${el.capital}</li><li>Population: ${el.population}</li><li>Languages: ${Object.values(el.languages)}</li></ul>`).join("");
+    const markupOne = arrObj.map((el) => `<h2><img src =${el.flags.svg} width='30' heigth='20'></img> ${el.name.common}</h2><ul><li>Capital: ${el.capital}</li><li>Population: ${el.population}</li><li>Languages: ${Object.values(el.languages)}</li></ul>`).join("");
     countryInfo.innerHTML = markupOne;
     arrObj.map((el) => console.log(Object.values(el.languages)))
 }
 
-// function resetInput() {
-//     countryList.innerHTML = '';
-//     countryInfo.innerHTML = '';
-
-// }
