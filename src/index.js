@@ -1,5 +1,6 @@
 import './css/styles.css';
 import { fetchCountries } from "./js/fetchCountries";
+import Notiflix from 'notiflix';
 let debounce = require('lodash.debounce');
 const DEBOUNCE_DELAY = 300;
 const searchInput = document.getElementById("search-box");
@@ -24,25 +25,27 @@ function searchCountryOnPromise(value) {
         })
         .then(f => {
             if (f.length > 10) {
-                console.log("Too many matches found. Please enter a more specific name.")      
+                Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');     
             } else if (f.length === 1) {
                 renderOneCountryCard(f)
             } else {
                 renderCountryList(f);  
             }
         })
-        .catch(e => console.log('пиши нормально'));
+        .catch(e =>
+            Notiflix.Notify.failure("Oops, there is no country with that name")
+        );
 }
 
 function renderCountryList(arrObj) {
     countryInfo.innerHTML = '';
-    const markup = arrObj.map((el) => `<li class='country-list'><img src =${el.flags.svg} width='30' heigth='20'></img>${el.name.common}</li>`).join("");
+    const markup = arrObj.map((el) => `<li class='country-li'><img src =${el.flags.svg} width='30' heigth='20'></img>${el.name.common}</li>`).join("");
     countryList.innerHTML = markup;
 }
 
 function renderOneCountryCard(arrObj) {
     countryList.innerHTML = '';
-    const markupOne = arrObj.map((el) => `<h2><img src =${el.flags.svg} width='30' heigth='20'></img> ${el.name.common}</h2><ul><li>Capital: ${el.capital}</li><li>Population: ${el.population}</li><li>Languages: ${Object.values(el.languages)}</li></ul>`).join("");
+    const markupOne = arrObj.map((el) => `<h2><img src =${el.flags.svg} width='30' heigth='20'></img> ${el.name.common}</h2><ul class="country-list"><li class="country-li">Capital: ${el.capital}</li><li class="country-li">Population: ${el.population}</li><li class="country-li">Languages: ${Object.values(el.languages)}</li></ul>`).join("");
     countryInfo.innerHTML = markupOne;
 }
 
@@ -50,3 +53,4 @@ function clearInput() {
     countryList.innerHTML = '';
     countryInfo.innerHTML = '';
 }
+

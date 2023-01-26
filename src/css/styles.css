@@ -19,5 +19,8 @@ body {
   margin-bottom: 16px;
 }
 .country-list{
-  font-size: 21px;
+  list-style: none;
+}
+.country-li{
+  font-size: 27px;
 }
