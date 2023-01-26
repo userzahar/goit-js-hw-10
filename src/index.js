@@ -27,7 +27,7 @@ function searchCountryOnPromise(value) {
 }
 
 function renderCountryList(arrObj) {
-    const markup = arrObj.map((el) => `<li><img src =${el.flags.svg} width='30' heigth='20'></img>${el.name.common}</li>`).join("");
+    const markup = arrObj.map((el) => `<li class='country-list'><img src =${el.flags.svg} width='30' heigth='20'></img>${el.name.common}</li>`).join("");
     countryList.innerHTML = markup;
     arrObj.map((el) => console.log(el.flags.svg))
 }
