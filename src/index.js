@@ -54,4 +54,3 @@ function clearInput() {
     countryList.innerHTML = '';
     countryInfo.innerHTML = '';
 }
-
